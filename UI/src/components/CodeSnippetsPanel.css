@@ -1,0 +1,88 @@
+/* src/components/CodeSnippetsPanel.css */
+.code-snippets-panel {
+    width: 250px;
+    background-color: #2d2d2d;
+    color: white;
+    padding: 10px;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .code-snippets-panel h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #fff;
+  }
+  
+  .code-snippets-panel ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .code-snippets-panel li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #444;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .code-snippets-panel li:hover {
+    background-color: #555;
+  }
+  
+  .code-snippets-panel pre {
+    margin: 5px 0;
+    font-size: 12px;
+    color: #ccc;
+  }
+  
+  .ai-snippet-generator {
+    margin-top: 20px;
+  }
+  
+  .ai-snippet-generator h4 {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #fff;
+  }
+  
+  .ai-snippet-generator button {
+    padding: 5px 10px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .ai-snippet-generator button:hover {
+    background-color: #0056b3;
+  }
+  
+  .ai-snippet {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #444;
+    border-radius: 4px;
+  }
+  
+  .ai-snippet pre {
+    margin: 5px 0;
+    font-size: 12px;
+    color: #ccc;
+  }
+  
+  .ai-snippet button {
+    margin-top: 5px;
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .ai-snippet button:hover {
+    background-color: #218838;
+  }
