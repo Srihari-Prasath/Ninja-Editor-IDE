@@ -15,6 +15,7 @@ const App = () => {
   const [users, setUsers] = useState([]);
   const [typing, setTyping] = useState("");
   const [output, setOutput] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // Loading state
 
   useEffect(() => {
     socket.on("userJoined", (users) => {
@@ -90,12 +91,13 @@ const App = () => {
   };
 
   const runCode = () => {
+    setIsLoading(true); // Show loading state
     if (language !== "javascript") {
       setOutput("⚠️ Execution only works for JavaScript in the browser.");
+      setIsLoading(false);
       return;
     }
     try {
-      // Capture console.log output
       let logs = [];
       const originalConsoleLog = console.log;
       console.log = (...args) => {
@@ -103,15 +105,14 @@ const App = () => {
         originalConsoleLog(...args);
       };
 
-      // Execute code
       eval(code);
 
-      // Restore console.log and display output
       console.log = originalConsoleLog;
-      setOutput(logs.join("\n") || "Write an code ");
+      setOutput(logs.join("\n") || "Write some code to see output.");
     } catch (error) {
       setOutput(`❌ Error: ${error.message}`);
     }
+    setIsLoading(false); // Hide loading state
   };
 
   if (!joined) {
@@ -182,14 +183,13 @@ const App = () => {
             fontSize: 14,
           }}
         />
-        
       </div>
 
       <div className="output-box">
         <h3>Output:</h3>
         <pre>{output}</pre>
         <button className="run-button" onClick={runCode}>
-          Run Code
+          {isLoading ? "Running..." : "Run Code"}
         </button>
       </div>
     </div>
