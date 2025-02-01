@@ -1,8 +1,7 @@
-
 import React, { useEffect, useRef } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import Prism from 'prismjs';
-import 'prismjs/themes/prism-tomorrow.css'; 
+import 'prismjs/themes/prism-tomorrow.css';
 import './Output.css';
 
 const Output = ({ output, onClear }) => {

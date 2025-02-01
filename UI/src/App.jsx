@@ -1,25 +1,34 @@
 import React, { useState } from 'react';
 import CodeEditor from './components/CodeEditor';
-import CodeSnippetsPanel from './components/CodeSnippetsPanel';
 import Output from './components/Output';
-import './index.css';
+import './App.css';
 
 const App = () => {
-  const [code, setCode] = useState('// Start coding here...');
+  const [code, setCode] = useState('');
   const [output, setOutput] = useState('');
 
-  // Handle inserting a snippet into the editor
-  const handleInsertSnippet = (snippet) => {
-    setCode((prevCode) => prevCode + '\n' + snippet);
+  const handleRun = () => {
+    try {
+      // Execute the code and capture the output
+      const result = eval(code); // Note: Using `eval` is generally unsafe and should be avoided in production
+      setOutput(result.toString());
+    } catch (error) {
+      setOutput(`Error: ${error.message}`);
+    }
+  };
+
+  const handleClearOutput = () => {
+    setOutput('');
   };
 
   return (
-    <div className="app">
-      <CodeSnippetsPanel onInsertSnippet={handleInsertSnippet} />
-      <div className="editor-container">
-        <CodeEditor code={code} onChange={setCode} />
+    <div className="app-container">
+      <div className="editor-panel">
+        <CodeEditor code={code} onChange={setCode} onRun={handleRun} />
       </div>
-      <Output output={output} />
+      <div className="output-panel">
+        <Output output={output} onClear={handleClearOutput} />
+      </div>
     </div>
   );
 };

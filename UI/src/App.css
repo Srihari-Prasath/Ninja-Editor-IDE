@@ -1,0 +1,22 @@
+/* App.css */
+.app-container {
+    display: flex;
+    height: 100vh;
+    background-color: #1e1e1e;
+    color: #fff;
+  }
+  
+  .editor-panel {
+    flex: 1; /* Takes up 50% of the width */
+    display: flex;
+    flex-direction: column;
+    background-color: #252526;
+    border-right: 1px solid #333; /* Divider between editor and output */
+  }
+  
+  .output-panel {
+    flex: 1; /* Takes up 50% of the width */
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1e1e;
+  }
