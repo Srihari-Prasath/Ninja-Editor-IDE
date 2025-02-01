@@ -108,7 +108,7 @@ const App = () => {
 
       // Restore console.log and display output
       console.log = originalConsoleLog;
-      setOutput(logs.join("\n") || "✅ Code executed successfully.");
+      setOutput(logs.join("\n") || "Write an code ");
     } catch (error) {
       setOutput(`❌ Error: ${error.message}`);
     }
