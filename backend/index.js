@@ -2,16 +2,32 @@ import express from "express";
 import http from "http";
 import { Server } from "socket.io";
 import path from "path";
+import mongoose from "mongoose";
 
 const app = express();
-
 const server = http.createServer(app);
-
 const io = new Server(server, {
   cors: {
     origin: "*",
   },
 });
+
+// MongoDB connection
+mongoose.connect("mongodb://localhost:27017/codeditor", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("Failed to connect to MongoDB", err));
+
+// User schema
+const userSchema = new mongoose.Schema({
+  userId: String,
+  userName: String,
+  roomId: String,
+});
+
+const User = mongoose.model("User", userSchema);
 
 const rooms = new Map();
 
@@ -21,11 +37,14 @@ io.on("connection", (socket) => {
   let currentRoom = null;
   let currentUser = null;
 
-  socket.on("join", ({ roomId, userName }) => {
+  socket.on("join", async ({ roomId, userName }) => {
     if (currentRoom) {
       socket.leave(currentRoom);
       rooms.get(currentRoom).delete(currentUser);
       io.to(currentRoom).emit("userJoined", Array.from(rooms.get(currentRoom)));
+
+      // Remove the user from the database
+      await User.deleteOne({ userId: socket.id });
     }
 
     currentRoom = roomId;
@@ -39,6 +58,10 @@ io.on("connection", (socket) => {
 
     rooms.get(roomId).add(userName);
 
+    // Save the user to the database
+    const user = new User({ userId: socket.id, userName, roomId });
+    await user.save();
+
     io.to(roomId).emit("userJoined", Array.from(rooms.get(currentRoom)));
   });
 
@@ -46,10 +69,13 @@ io.on("connection", (socket) => {
     socket.to(roomId).emit("codeUpdate", code);
   });
 
-  socket.on("leaveRoom", () => {
+  socket.on("leaveRoom", async () => {
     if (currentRoom && currentUser) {
       rooms.get(currentRoom).delete(currentUser);
       io.to(currentRoom).emit("userJoined", Array.from(rooms.get(currentRoom)));
+
+      // Remove the user from the database
+      await User.deleteOne({ userId: socket.id });
 
       socket.leave(currentRoom);
 
@@ -66,17 +92,19 @@ io.on("connection", (socket) => {
     io.to(roomId).emit("languageUpdate", language);
   });
 
-  socket.on("disconnect", () => {
+  socket.on("disconnect", async () => {
     if (currentRoom && currentUser) {
       rooms.get(currentRoom).delete(currentUser);
       io.to(currentRoom).emit("userJoined", Array.from(rooms.get(currentRoom)));
+
+      // Remove the user from the database
+      await User.deleteOne({ userId: socket.id });
     }
     console.log("user Disconnected");
   });
 });
 
 const port = process.env.PORT || 5000;
-
 const __dirname = path.resolve();
 
 app.use(express.static(path.join(__dirname, "/frontend/dist")));
