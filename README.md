@@ -150,14 +150,14 @@ We welcome contributions! Please follow these steps:
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ---
-##Contripution
+## Contripution
 
 The following individuals have contributed to the development of NE-IDE:
 
  -Abi Gayathir
-
+---
  -Sri Hari Prasath
-
+---
  -Sandhosh
 ---
 
