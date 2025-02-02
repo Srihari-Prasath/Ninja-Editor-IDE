@@ -161,9 +161,4 @@ The following individuals have contributed to the development of NE-IDE:
  -Sandhosh
 ---
 
-### How to Use This `README.md`
-1. Copy the above Markdown content.
-2. Paste it into a new file named `README.md` in the root directory of your project.
-3. Replace placeholders (e.g., `your-repo`, `your-demo-link.com`, `your.email@example.com`) with your actual project details.
-4. Add a logo or demo GIF if available.
 
