@@ -1,6 +1,6 @@
 # AI-Assisted Real-Time Code Editor
 
-![Project Logo](readme/code editor logo.png) <!-- Add a logo if available -->
+![Project Logo](/readme/code%20editor%20logo.png) 
 
 The **AI-Assisted Real-Time Code Editor** is a lightweight, collaborative code editor designed for developers to work together in real-time. It integrates AI-powered features like auto-completion, linting, and code documentation generation to enhance productivity and code quality. The editor supports multiple programming languages, real-time collaboration, and a user-friendly interface with customizable themes.
 
@@ -42,9 +42,7 @@ The **AI-Assisted Real-Time Code Editor** is a lightweight, collaborative code e
 
 ## Demo
 
-![Demo GIF](https://via.placeholder.com/600x400) <!-- Add a demo GIF or screenshot -->
-
-Try the live demo: [Live Demo](https://your-demo-link.com)
+![Project ](/readme/code%20editor%20logo.png) 
 
 ---
 
