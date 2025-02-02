@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import io from "socket.io-client";
 import Editor from "@monaco-editor/react";
+import Intro from "./Intro.jsx"; // Update the import
 
 const socket = io("https://realtime-code-editor-zwp3.onrender.com");
 
 const App = () => {
+  const [showIntro, setShowIntro] = useState(true); // State to control the intro screen
   const [joined, setJoined] = useState(false);
   const [roomId, setRoomId] = useState("");
   const [userName, setUserName] = useState("");
@@ -15,6 +17,14 @@ const App = () => {
   const [users, setUsers] = useState([]);
   const [typing, setTyping] = useState("");
   const [output, setOutput] = useState("");
+  const [fontSize, setFontSize] = useState(14);
+  const [theme, setTheme] = useState("vs-dark");
+  const [wordWrap, setWordWrap] = useState("off");
+
+  // Handle the completion of the intro animation
+  const handleIntroComplete = () => {
+    setShowIntro(false);
+  };
 
   useEffect(() => {
     socket.on("userJoined", (users) => {
@@ -53,11 +63,12 @@ const App = () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
+
   const joinRoom = async () => {
     if (roomId && userName) {
       socket.emit("join", { roomId, userName });
       setJoined(true);
-  
+
       // Send user details to the backend for storage in MongoDB
       try {
         const response = await fetch("http://localhost:5000/api/users", {
@@ -65,7 +76,7 @@ const App = () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ roomId, userName }),
         });
-  
+
         const data = await response.json();
         if (!response.ok) {
           console.error("Error saving user:", data.message);
@@ -75,7 +86,7 @@ const App = () => {
       }
     }
   };
-  
+
   const leaveRoom = () => {
     socket.emit("leaveRoom");
     setJoined(false);
@@ -129,6 +140,19 @@ const App = () => {
     }
   };
 
+  const handleEditorDidMount = (editor, monaco) => {
+    // Add a custom command for search
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_F, () => {
+      editor.getAction('actions.find').run();
+    });
+  };
+
+  // Show the intro screen if `showIntro` is true
+  if (showIntro) {
+    return <Intro onIntroComplete={handleIntroComplete} />;
+  }
+
+  // Show the join room screen if not joined
   if (!joined) {
     return (
       <div className="join-container">
@@ -152,6 +176,7 @@ const App = () => {
     );
   }
 
+  // Show the main editor screen if joined
   return (
     <div className="editor-container">
       <div className="sidebar">
@@ -179,6 +204,30 @@ const App = () => {
           <option value="java">Java</option>
           <option value="cpp">C++</option>
         </select>
+        <div className="editor-settings">
+          <label>
+            Font Size:
+            <input
+              type="number"
+              value={fontSize}
+              onChange={(e) => setFontSize(Number(e.target.value))}
+            />
+          </label>
+          <label>
+            Theme:
+            <select value={theme} onChange={(e) => setTheme(e.target.value)}>
+              <option value="vs-dark">Dark</option>
+              <option value="vs-light">Light</option>
+            </select>
+          </label>
+          <label>
+            Word Wrap:
+            <select value={wordWrap} onChange={(e) => setWordWrap(e.target.value)}>
+              <option value="off">Off</option>
+              <option value="on">On</option>
+            </select>
+          </label>
+        </div>
         <button className="leave-button" onClick={leaveRoom}>
           Leave Room
         </button>
@@ -191,13 +240,14 @@ const App = () => {
           language={language}
           value={code}
           onChange={handleCodeChange}
-          theme="vs-dark"
+          theme={theme}
           options={{
             minimap: { enabled: false },
-            fontSize: 14,
+            fontSize: fontSize,
+            wordWrap: wordWrap,
           }}
+          onMount={handleEditorDidMount}
         />
-        
       </div>
 
       <div className="output-box">

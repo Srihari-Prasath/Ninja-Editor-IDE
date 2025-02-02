@@ -1,6 +1,10 @@
-# AI-Assisted Real-Time Code Editor
+# AI-Assisted NE-IDE 
 
-![Project Logo](/readme/code%20editor%20logo.png) 
+<p align="center">
+  <img src="readme/code.png" alt="NE-IDE Logo" width="100">
+  <br>
+  <strong>NE-IDE</strong>
+</p>
 
 The **AI-Assisted Real-Time Code Editor** is a lightweight, collaborative code editor designed for developers to work together in real-time. It integrates AI-powered features like auto-completion, linting, and code documentation generation to enhance productivity and code quality. The editor supports multiple programming languages, real-time collaboration, and a user-friendly interface with customizable themes.
 

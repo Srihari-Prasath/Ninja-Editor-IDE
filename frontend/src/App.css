@@ -364,3 +364,107 @@ body {
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.join-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+.join-form {
+  background-color: #2d2d2d;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.join-form input {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 80%;
+  border: none;
+  border-radius: 5px;
+}
+
+.join-form button {
+  padding: 10px 20px;
+  background-color: #00ff00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.editor-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #2d2d2d;
+  color: #fff;
+  padding: 20px;
+}
+
+.editor-wrapper {
+  flex: 1;
+  background-color: #1e1e1e;
+}
+
+.output-box {
+  width: 250px;
+  background-color: #2d2d2d;
+  color: #fff;
+  padding: 20px;
+}
+
+.copy-button, .leave-button, .run-button {
+  padding: 10px;
+  margin: 5px;
+  background-color: #00ff00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.copy-success {
+  color: #00ff00;
+  margin-left: 10px;
+}
+
+.typing-indicator {
+  color: #00ff00;
+  font-style: italic;
+}
+
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.logo h4 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.logo img {
+  width: 50px; /* Adjust the size as needed */
+  height: 50px;
+}
