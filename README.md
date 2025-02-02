@@ -51,6 +51,16 @@ The **AI-Assisted Real-Time Code Editor** is a lightweight, collaborative code e
   <br>
   
 </p>
+<p align="center">
+  <img src="readme/2.png" alt="Demo" >
+  <br>
+  
+</p>
+<p align="center">
+  <img src="readme/2.png" alt="Demo" >
+  <br>
+  
+</p>
 ---
 
 ## Installation
@@ -140,16 +150,15 @@ We welcome contributions! Please follow these steps:
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ---
+##Contripution
 
-## Contact
+The following individuals have contributed to the development of NE-IDE:
 
-For any questions or feedback, please contact:
+ -Abi Gayathir
 
-- **Email:** your.email@example.com
-- **GitHub:** [your-repo](https://github.com/your-repo)
+ -Sri Hari Prasath
 
-Thank you for using the AI-Assisted Real-Time Code Editor! Happy coding! 🚀
-
+ -Sandhosh
 ---
 
 ### How to Use This `README.md`
