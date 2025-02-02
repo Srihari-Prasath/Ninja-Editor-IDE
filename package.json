@@ -22,6 +22,7 @@
     "express": "^4.21.2",
     "http": "^0.0.1-security",
     "mongoose": "^8.9.6",
+    "prettier": "^3.4.2",
     "react-toastify": "^11.0.3",
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1"

@@ -46,8 +46,11 @@ The **AI-Assisted Real-Time Code Editor** is a lightweight, collaborative code e
 
 ## Demo
 
-![Project ](/readme/code%20editor%20logo.png) 
-
+<p align="center">
+  <img src="readme/1.png" alt="Demo" >
+  <br>
+  
+</p>
 ---
 
 ## Installation
