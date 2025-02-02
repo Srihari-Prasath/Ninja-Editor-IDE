@@ -121,7 +121,7 @@ const App = () => {
       return;
     }
     try {
-      // Capture console.log output
+      
       let logs = [];
       const originalConsoleLog = console.log;
       console.log = (...args) => {
@@ -129,10 +129,10 @@ const App = () => {
         originalConsoleLog(...args);
       };
 
-      // Execute code
+      
       eval(code);
 
-      // Restore console.log and display output
+      
       console.log = originalConsoleLog;
       setOutput(logs.join("\n") || "Write an code ");
     } catch (error) {
@@ -141,18 +141,18 @@ const App = () => {
   };
 
   const handleEditorDidMount = (editor, monaco) => {
-    // Add a custom command for search
+    
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_F, () => {
       editor.getAction('actions.find').run();
     });
   };
 
-  // Show the intro screen if `showIntro` is true
+  
   if (showIntro) {
     return <Intro onIntroComplete={handleIntroComplete} />;
   }
 
-  // Show the join room screen if not joined
+  
   if (!joined) {
     return (
       <div className="join-container">
